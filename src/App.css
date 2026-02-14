@@ -1,0 +1,411 @@
+.App {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-align: center;
+  background: linear-gradient(135deg, #e8f5e8 0%, #a8d5ba 100%);
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.App-header {
+  background: linear-gradient(135deg, #4caf50 0%, #388e3c 100%);
+  color: white;
+  padding: 30px;
+  border-radius: 15px;
+  margin-bottom: 30px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+.App-header h1 {
+  margin: 0;
+  font-size: 3rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.App-header button {
+  background: #ff6b6b;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  margin-top: 15px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.App-header button:hover {
+  background: #ff5252;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.login {
+  background: white;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  margin: 30px auto;
+  transition: transform 0.3s ease;
+}
+
+.login:hover {
+  transform: translateY(-5px);
+}
+
+.login h2 {
+  color: #2e7d32;
+  margin-bottom: 25px;
+  font-size: 2rem;
+}
+
+.login form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.login input {
+  padding: 15px;
+  border: 2px solid #c8e6c9;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  transition: border-color 0.3s;
+}
+
+.login input:focus {
+  outline: none;
+  border-color: #4caf50;
+}
+
+.login button {
+  background: linear-gradient(135deg, #4caf50 0%, #388e3c 100%);
+  color: white;
+  border: none;
+  padding: 15px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.login button:hover {
+  background: linear-gradient(135deg, #388e3c 0%, #4caf50 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.login p {
+  color: #d32f2f;
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+.admin {
+  background: white;
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  max-width: 700px;
+  margin: 30px auto;
+  transition: transform 0.3s ease;
+}
+
+.admin:hover {
+  transform: translateY(-5px);
+}
+
+.admin h2 {
+  color: #2e7d32;
+  margin-bottom: 25px;
+  font-size: 2rem;
+}
+
+.admin label {
+  display: block;
+  margin: 15px 0;
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #555;
+}
+
+.admin ul {
+  list-style: none;
+  padding: 0;
+}
+
+.admin li {
+  background: #f9f9f9;
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 10px;
+  border-left: 5px solid #4caf50;
+  transition: background 0.3s;
+}
+
+.admin li:hover {
+  background: #e8f5e8;
+}
+
+.admin button {
+  background: linear-gradient(135deg, #4caf50 0%, #388e3c 100%);
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin-top: 20px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.admin button:hover {
+  background: linear-gradient(135deg, #388e3c 0%, #4caf50 100%);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.admin button:active {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.buttons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.buttons button {
+  background: linear-gradient(135deg, #4caf50 0%, #388e3c 100%);
+  color: white;
+  border: none;
+  padding: 15px 25px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  min-width: 180px;
+}
+
+.buttons button:hover {
+  background: linear-gradient(135deg, #388e3c 0%, #4caf50 100%);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.buttons button:active {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.dropdown {
+  padding: 15px;
+  border: 2px solid #c8e6c9;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  background: white;
+  cursor: pointer;
+  transition: border-color 0.3s;
+  width: 200px;
+  margin: 20px 0;
+}
+
+.dropdown:focus {
+  outline: none;
+  border-color: #4caf50;
+}
+
+.message {
+  color: #d32f2f;
+  font-weight: bold;
+  margin-top: 15px;
+  padding: 10px;
+  background: #ffebee;
+  border-radius: 5px;
+  border-left: 5px solid #d32f2f;
+}
+
+.leaderboard {
+  background: white;
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  margin: 30px auto;
+}
+
+.leaderboard h2 {
+  color: #2e7d32;
+  margin-bottom: 25px;
+}
+
+.leaderboard-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.leaderboard-table th, .leaderboard-table td {
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.leaderboard-table th {
+  background: #4caf50;
+  color: white;
+}
+
+.leaderboard-table tr:hover {
+  background: #f9f9f9;
+}
+
+@media (max-width: 768px) {
+  .App {
+    padding: 10px;
+  }
+
+  .App-header {
+    padding: 20px;  /* Reduced padding */
+    margin-bottom: 20px;
+  }
+
+  .App-header h1 {
+    font-size: 2rem;  /* Smaller title */
+  }
+
+  .App-header button {
+    padding: 10px 20px;  /* Smaller button */
+    font-size: 1rem;
+    margin-top: 10px;
+  }
+
+  .login {
+    padding: 20px;  /* Reduced padding */
+    max-width: 90%;  /* Full width on small screens */
+    margin: 20px auto;
+  }
+
+  .login h2 {
+    font-size: 1.5rem;  /* Smaller heading */
+    margin-bottom: 20px;
+  }
+
+  .login input {
+    padding: 12px;  /* Smaller inputs */
+    font-size: 1rem;
+  }
+
+  .login button {
+    padding: 12px;  /* Smaller button */
+    font-size: 1.1rem;
+  }
+
+  .admin {
+    padding: 25px;  /* Reduced padding */
+    max-width: 95%;  /* Full width */
+    margin: 20px auto;
+  }
+
+  .admin h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+  }
+
+  .admin label {
+    font-size: 1rem;  /* Smaller labels */
+    margin: 10px 0;
+  }
+
+  .admin li {
+    padding: 12px;  /* Smaller list items */
+  }
+
+  .admin button {
+    padding: 12px 20px;  /* Smaller save button */
+    font-size: 1.1rem;
+    margin-top: 15px;
+  }
+
+  .buttons {
+    gap: 10px;  /* Smaller gap */
+    flex-direction: column;  /* Stack buttons vertically */
+    align-items: center;
+  }
+
+  .buttons button {
+    min-width: 200px;  /* Wider for touch */
+    padding: 12px 20px;
+    font-size: 1rem;
+  }
+
+  .dropdown {
+    width: 100%;  /* Full width */
+    padding: 12px;
+    font-size: 1rem;
+  }
+
+  .message {
+    padding: 8px;
+    font-size: 0.9rem;
+  }
+
+  .leaderboard {
+    padding: 20px;  /* Reduced padding */
+    max-width: 95%;  /* Full width */
+    margin: 20px auto;
+  }
+
+  .leaderboard h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+  }
+
+  .leaderboard-table {
+    font-size: 0.9rem;  /* Smaller text */
+    overflow-x: auto;  /* Horizontal scroll for table */
+    display: block;
+    white-space: nowrap;
+  }
+
+  .leaderboard-table th, .leaderboard-table td {
+    padding: 8px;  /* Smaller padding */
+    min-width: 80px;  /* Minimum width for columns */
+  }
+}
+
+@media (max-width: 480px) {
+  /* Extra small screens (e.g., phones) */
+  .App-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .buttons button {
+    min-width: 180px;
+    padding: 10px 15px;
+    font-size: 0.9rem;
+  }
+
+  .admin button {
+    padding: 10px 15px;
+    font-size: 1rem;
+  }
+
+  .leaderboard-table th, .leaderboard-table td {
+    padding: 6px;
+    font-size: 0.8rem;
+  }
+}
