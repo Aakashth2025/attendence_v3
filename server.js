@@ -86,6 +86,3 @@ app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
 
-app.get('/', () => {
-    console.log('Hello from the server!');
-});

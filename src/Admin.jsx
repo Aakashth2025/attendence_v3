@@ -1,39 +1,38 @@
 import React, { useState, useEffect } from 'react';
 import { PieChart, Pie, Cell, Tooltip, Legend } from 'recharts';
 
-const API = "https://attendence-v3.onrender.com";
-
 const users = ["Aakash","Adarsh","Sagar","Sahil","Gaurav","Kavya","Sravya","Lolasri","Manisha","Akshay","Shashank","Chaitanya","Niharika"];
 
 function Admin({ user }) {
 
+  const [today, setToday] = useState('');
   const [date, setDate] = useState('');
   const [selectedUsers, setSelectedUsers] = useState([]);
+  const [message, setMessage] = useState('');
   const [view, setView] = useState(null);
   const [attendanceList, setAttendanceList] = useState([]);
-  const [message, setMessage] = useState('');
   const [isAttendanceSaved, setIsAttendanceSaved] = useState(false);
   const [pieData, setPieData] = useState([]);
 
-  // ✅ Fetch server date
   useEffect(() => {
-    fetch(`${API}/api/today`)
+    fetch('https://attendence-v3.onrender.com/api/today')
       .then(res => res.json())
-      .then(data => setDate(data.date));
+      .then(data => {
+        setToday(data.date);
+        setDate(data.date);
+      });
   }, []);
 
   useEffect(() => {
-    if (!date) return;
+    if (!today) return;
 
-    if (view === 'mark') {
-      loadAttendance(date);
-    } else if (view === 'date') {
-      loadAttendance(date);
-    }
-  }, [view, date]);
+    if (view === 'mark') loadAttendance(today);
+    if (view === 'date') loadAttendance(date);
 
-  const loadAttendance = async (selectedDate) => {
-    const res = await fetch(`${API}/api/attendance/${selectedDate}`);
+  }, [view, date, today]);
+
+  const loadAttendance = async (d) => {
+    const res = await fetch(`https://attendence-v3.onrender.com/api/attendance/${d}`);
     const list = await res.json();
 
     if (view === 'mark') {
@@ -41,8 +40,8 @@ function Admin({ user }) {
       setIsAttendanceSaved(list.length > 0);
     } else {
       setAttendanceList(list);
-      const absent = users.length - list.length;
 
+      const absent = users.length - list.length;
       setPieData([
         { name: 'Present', value: list.length, color: '#4caf50' },
         { name: 'Absent', value: absent, color: '#f44336' }
@@ -50,18 +49,24 @@ function Admin({ user }) {
     }
   };
 
-  const handleCheckboxChange = (username) => {
-    if (isAttendanceSaved) return;
+  const handleCheckboxChange = (u) => {
+    if (isAttendanceSaved) {
+      setMessage("Attendance is already marked for today.");
+      return;
+    }
 
     setSelectedUsers(prev =>
-      prev.includes(username)
-        ? prev.filter(u => u !== username)
-        : [...prev, username]
+      prev.includes(u) ? prev.filter(x => x !== u) : [...prev, u]
     );
   };
 
   const handleSave = async () => {
-    const res = await fetch(`${API}/api/attendance?user=${user}`, {
+    if (isAttendanceSaved) {
+      setMessage("Today's attendance has already been saved.");
+      return;
+    }
+
+    const res = await fetch(`https://attendence-v3.onrender.com/api/attendance?user=${user}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ users: selectedUsers })
@@ -70,15 +75,15 @@ function Admin({ user }) {
     const data = await res.json();
 
     if (data.success) {
-      setIsAttendanceSaved(true);
-      setMessage("Attendance saved");
+      setMessage('Attendance saved successfully!');
+      loadAttendance(today);
     }
   };
 
-  const isFutureDate = date > new Date().toISOString().split('T')[0];
+  const isFutureDate = today && date > today;
 
   return (
-    <div className="admin">
+    <div>
       <h2>Admin Panel</h2>
 
       <button onClick={() => setView('mark')}>Take Today's Attendance</button>
@@ -86,7 +91,7 @@ function Admin({ user }) {
 
       {view === 'mark' && (
         <>
-          <h3>Mark Attendance ({date})</h3>
+          <h3>Mark Attendance ({today})</h3>
 
           {users.map(u => (
             <label key={u}>
@@ -100,36 +105,33 @@ function Admin({ user }) {
             </label>
           ))}
 
-          <button onClick={handleSave}>Save</button>
+          <button onClick={handleSave}>Save Attendance</button>
           {message && <p>{message}</p>}
         </>
       )}
 
       {view === 'date' && (
         <>
-          <input
-            type="date"
-            value={date}
-            onChange={(e) => setDate(e.target.value)}
-          />
+          <input type="date" value={date} onChange={e => setDate(e.target.value)} />
 
-          <ul>
-            {isFutureDate
-              ? <li>Future date</li>
-              : attendanceList.map(u => <li key={u}>{u}</li>)
-            }
-          </ul>
+          {isFutureDate ? (
+            <p>How can someone be present in future?</p>
+          ) : (
+            <>
+              <ul>
+                {attendanceList.map(u => <li key={u}>{u}</li>)}
+              </ul>
 
-          {!isFutureDate && (
-            <PieChart width={400} height={300}>
-              <Pie data={pieData} dataKey="value" outerRadius={80}>
-                {pieData.map((entry, i) => (
-                  <Cell key={i} fill={entry.color} />
-                ))}
-              </Pie>
-              <Tooltip />
-              <Legend />
-            </PieChart>
+              <PieChart width={400} height={300}>
+                <Pie data={pieData} dataKey="value" outerRadius={80}>
+                  {pieData.map((entry, i) => (
+                    <Cell key={i} fill={entry.color} />
+                  ))}
+                </Pie>
+                <Tooltip />
+                <Legend />
+              </PieChart>
+            </>
           )}
         </>
       )}

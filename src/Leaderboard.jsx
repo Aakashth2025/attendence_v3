@@ -9,21 +9,28 @@ function Leaderboard() {
     const fetchTotals = async () => {
       try {
         const response = await fetch('https://attendence-v3.onrender.com/api/analytics');
+
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
+
         const data = await response.json();
+
         if (data.studentTotals) {
-          setStudentTotals(data.studentTotals.sort((a, b) => b.total - a.total));
+          const sorted = [...data.studentTotals].sort((a, b) => b.total - a.total);
+          setStudentTotals(sorted);
         } else {
-          throw new Error('No studentTotals in response');
+          throw new Error('Invalid response');
         }
+
       } catch (err) {
+        console.error(err);
         setError('Failed to load leaderboard.');
       } finally {
         setLoading(false);
       }
     };
+
     fetchTotals();
   }, []);
 
@@ -33,6 +40,7 @@ function Leaderboard() {
   return (
     <div className="leaderboard">
       <h2>Attendance Leaderboard</h2>
+
       <table className="leaderboard-table">
         <thead>
           <tr>
@@ -41,6 +49,7 @@ function Leaderboard() {
             <th>Total Days</th>
           </tr>
         </thead>
+
         <tbody>
           {studentTotals.map((student, index) => (
             <tr key={student.name}>
