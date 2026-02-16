@@ -82,6 +82,38 @@ app.post('/api/attendance', async (req, res) => {
   res.json({ success: true });
 });
 
+app.get('/api/analytics', async (req, res) => {
+  try {
+    const studentList = [
+      "Aakash","Adarsh","Sagar","Sahil","Gaurav",
+      "Kavya","Sravya","Lolasri","Manisha",
+      "Akshay","Shashank","Chaitanya","Niharika"
+    ];
+
+    const records = await Attendance.find({});
+
+    const totalsMap = {};
+    studentList.forEach(name => totalsMap[name] = 0);
+
+    records.forEach(record => {
+      record.users.forEach(u => {
+        if (totalsMap[u] !== undefined) totalsMap[u]++;
+      });
+    });
+
+    const studentTotals = studentList.map(name => ({
+      name,
+      total: totalsMap[name]
+    }));
+
+    res.json({ studentTotals });
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({});
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
