@@ -4,7 +4,8 @@ import { PieChart, Pie, Cell, Tooltip, Legend } from 'recharts';
 const users = ["Aakash", "Adarsh", "Sagar", "Sahil", "Gaurav", "Kavya", "Sravya", "Lolasri", "Manisha", "Akshay", "Shashank", "Chaitanya", "Niharika"];
 
 function Admin({ user }) {
-  const today = new Date().toLocaleDateString('en-CA');
+  //const today = new Date().toLocaleDateString('en-CA');
+  const today = new Date().toISOString().split('T')[0];
   const [date, setDate] = useState(today);
   const [selectedUsers, setSelectedUsers] = useState([]);
   const [message, setMessage] = useState('');
