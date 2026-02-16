@@ -245,7 +245,8 @@
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
   max-width: 800px;
   margin: 30px auto;
-  text-align: center;  /* Added for centering content */
+  text-align: center;
+  overflow-x: auto;  /* Enable horizontal scrolling for the table if needed */
 }
 
 .leaderboard h2 {
@@ -258,15 +259,13 @@
   border-collapse: collapse;
   margin-top: 20px;
   margin: 0 auto;  /* Center the table */
-  overflow-x: auto;  /* Horizontal scroll on small screens */
-  display: block;  /* Allow scrolling */
+  white-space: nowrap;  /* Prevent text wrapping */
 }
 
 .leaderboard-table th, .leaderboard-table td {
   padding: 15px;
   text-align: left;
   border-bottom: 1px solid #ddd;
-  white-space: nowrap;  /* Prevent text wrapping */
 }
 
 .leaderboard-table th {
