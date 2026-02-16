@@ -245,6 +245,7 @@
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
   max-width: 800px;
   margin: 30px auto;
+  text-align: center;  /* Added for centering content */
 }
 
 .leaderboard h2 {
@@ -256,17 +257,24 @@
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
+  margin: 0 auto;  /* Center the table */
+  overflow-x: auto;  /* Horizontal scroll on small screens */
+  display: block;  /* Allow scrolling */
 }
 
 .leaderboard-table th, .leaderboard-table td {
   padding: 15px;
   text-align: left;
   border-bottom: 1px solid #ddd;
+  white-space: nowrap;  /* Prevent text wrapping */
 }
 
 .leaderboard-table th {
   background: #4caf50;
   color: white;
+  position: sticky;  /* Keep headers visible on scroll */
+  top: 0;
+  z-index: 1;
 }
 
 .leaderboard-table tr:hover {
@@ -279,44 +287,44 @@
   }
 
   .App-header {
-    padding: 20px;  /* Reduced padding */
+    padding: 20px;
     margin-bottom: 20px;
   }
 
   .App-header h1 {
-    font-size: 2rem;  /* Smaller title */
+    font-size: 2rem;
   }
 
   .App-header button {
-    padding: 10px 20px;  /* Smaller button */
+    padding: 10px 20px;
     font-size: 1rem;
     margin-top: 10px;
   }
 
   .login {
-    padding: 20px;  /* Reduced padding */
-    max-width: 90%;  /* Full width on small screens */
+    padding: 20px;
+    max-width: 90%;
     margin: 20px auto;
   }
 
   .login h2 {
-    font-size: 1.5rem;  /* Smaller heading */
+    font-size: 1.5rem;
     margin-bottom: 20px;
   }
 
   .login input {
-    padding: 12px;  /* Smaller inputs */
+    padding: 12px;
     font-size: 1rem;
   }
 
   .login button {
-    padding: 12px;  /* Smaller button */
+    padding: 12px;
     font-size: 1.1rem;
   }
 
   .admin {
-    padding: 25px;  /* Reduced padding */
-    max-width: 95%;  /* Full width */
+    padding: 25px;
+    max-width: 95%;
     margin: 20px auto;
   }
 
@@ -326,34 +334,34 @@
   }
 
   .admin label {
-    font-size: 1rem;  /* Smaller labels */
+    font-size: 1rem;
     margin: 10px 0;
   }
 
   .admin li {
-    padding: 12px;  /* Smaller list items */
+    padding: 12px;
   }
 
   .admin button {
-    padding: 12px 20px;  /* Smaller save button */
+    padding: 12px 20px;
     font-size: 1.1rem;
     margin-top: 15px;
   }
 
   .buttons {
-    gap: 10px;  /* Smaller gap */
-    flex-direction: column;  /* Stack buttons vertically */
+    gap: 10px;
+    flex-direction: column;
     align-items: center;
   }
 
   .buttons button {
-    min-width: 200px;  /* Wider for touch */
+    min-width: 200px;
     padding: 12px 20px;
     font-size: 1rem;
   }
 
   .dropdown {
-    width: 100%;  /* Full width */
+    width: 100%;
     padding: 12px;
     font-size: 1rem;
   }
@@ -364,8 +372,8 @@
   }
 
   .leaderboard {
-    padding: 20px;  /* Reduced padding */
-    max-width: 95%;  /* Full width */
+    padding: 20px;
+    max-width: 95%;
     margin: 20px auto;
   }
 
@@ -375,20 +383,16 @@
   }
 
   .leaderboard-table {
-    font-size: 0.9rem;  /* Smaller text */
-    overflow-x: auto;  /* Horizontal scroll for table */
-    display: block;
-    white-space: nowrap;
+    font-size: 0.9rem;
   }
 
   .leaderboard-table th, .leaderboard-table td {
-    padding: 8px;  /* Smaller padding */
-    min-width: 80px;  /* Minimum width for columns */
+    padding: 8px;
+    min-width: 80px;
   }
 }
 
 @media (max-width: 480px) {
-  /* Extra small screens (e.g., phones) */
   .App-header h1 {
     font-size: 1.8rem;
   }
@@ -407,5 +411,6 @@
   .leaderboard-table th, .leaderboard-table td {
     padding: 6px;
     font-size: 0.8rem;
+    min-width: 70px;
   }
 }
