@@ -82,7 +82,7 @@ function Admin({ user }) {
 
   const isFutureDate = today && date > today;
 
-  return (
+  /*return (
     <div>
       <h2>Admin Panel</h2>
 
@@ -136,7 +136,59 @@ function Admin({ user }) {
         </>
       )}
     </div>
-  );
+  );*/
+  return (
+  <div className="admin">
+
+    <h2>Admin Panel</h2>
+
+    <div className="buttons">
+      <button onClick={() => setView('mark')}>Take Today's Attendance</button>
+      <button onClick={() => setView('date')}>View Attendance by Date</button>
+    </div>
+
+    {view === 'mark' && (
+      <>
+        <h3>Mark Attendance ({today})</h3>
+
+        {users.map(u => (
+          <label key={u}>
+            <input
+              type="checkbox"
+              checked={selectedUsers.includes(u)}
+              onChange={() => handleCheckboxChange(u)}
+              disabled={isAttendanceSaved}
+            />
+            {u}
+          </label>
+        ))}
+
+        <button onClick={handleSave}>Save Attendance</button>
+
+        {message && <p className="message">{message}</p>}
+      </>
+    )}
+
+    {view === 'date' && (
+      <>
+        <h3>View Attendance by Date</h3>
+
+        <input
+          type="date"
+          className="dropdown"
+          value={date}
+          onChange={e => setDate(e.target.value)}
+        />
+
+        <ul>
+          {attendanceList.map(u => <li key={u}>{u}</li>)}
+        </ul>
+      </>
+    )}
+
+  </div>
+);
+
 }
 
 export default Admin;
