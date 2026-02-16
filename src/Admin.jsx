@@ -22,7 +22,7 @@ function Admin({ user }) {
   }, [view, date]);
 
   const loadAttendance = async (selectedDate) => {
-    const response = await fetch(`http://attendence-v3.onrender.com/api/attendance/${selectedDate}`);
+    const response = await fetch(`https://attendence-v3.onrender.com/api/attendance/${selectedDate}`);
     const list = await response.json();
     if (view === 'mark') {
       setSelectedUsers(list);
@@ -55,7 +55,7 @@ function Admin({ user }) {
       return;
     }
     //const response = await fetch(`http://localhost:5000/api/attendance?user=${user}`, {
-    const response = await fetch(`http://attendence-v3.onrender.com/api/attendance?user=${user}`, {
+    const response = await fetch(`https://attendence-v3.onrender.com/api/attendance?user=${user}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ date: today, users: selectedUsers })

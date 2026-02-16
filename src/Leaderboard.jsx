@@ -8,7 +8,7 @@ function Leaderboard() {
   useEffect(() => {
     const fetchTotals = async () => {
       try {
-        const response = await fetch('http://attendence-v3.onrender.com/api/analytics');
+        const response = await fetch('https://attendence-v3.onrender.com/api/analytics');
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
