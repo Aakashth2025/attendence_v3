@@ -59,7 +59,8 @@ function Admin({ user }) {
     const response = await fetch(`https://attendence-v3.onrender.com/api/attendance?user=${user}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ date: today, users: selectedUsers })
+      //body: JSON.stringify({ date: today, users: selectedUsers })
+      body: JSON.stringify({ users: selectedUsers })
     });
     const data = await response.json();
     if (data.success) {

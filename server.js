@@ -80,14 +80,9 @@ app.get('/api/attendance/:date', async (req, res) => {
 });
 
 app.post('/api/attendance', async (req, res) => {
-    const { date, users } = req.body;
+    const { users } = req.body;
     const requestingUser = req.query.user;
-    const todayServer = getTodayServer();
-
-    if (date !== todayServer) {
-        return res.json({ success: false, message: 'Attendance can only be marked for today.' });
-    }
-
+    const date = getTodayServer(); // Use server's date for consistency
     const user = await User.findOne({ username: requestingUser });
     if (!user || !user.isAdmin) {
         return res.status(403).json({ success: false, message: 'Admin access required' });
